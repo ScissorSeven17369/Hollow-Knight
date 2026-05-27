@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hollow Knight - Forgotten Crossroads</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=MedievalSharp&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- TITLE SCREEN -->
+    <div id="title-screen">
+        <div class="title-fog"></div>
+        <div class="title-particles" id="title-particles"></div>
+        <div class="title-content">
+            <div class="title-logo">
+                <div class="title-horn left"></div>
+                <div class="title-horn right"></div>
+                <h1 class="title-text">HOLLOW<br>KNIGHT</h1>
+                <div class="title-subtitle">Forgotten Crossroads</div>
+            </div>
+            <div class="title-prompt" id="title-prompt">Press any key to begin</div>
+        </div>
+    </div>
+
+    <!-- HUD -->
+    <div id="hud" class="hidden">
+        <!-- Health -->
+        <div id="health-container">
+            <div id="health-soul"></div>
+            <div id="health-mask"></div>
+        </div>
+        <!-- Soul Meter -->
+        <div id="soul-container">
+            <div id="soul-vessel"></div>
+            <div id="soul-fill"></div>
+        </div>
+        <!-- Geo Counter -->
+        <div id="geo-container">
+            <div id="geo-icon"></div>
+            <span id="geo-count">0</span>
+        </div>
+        <!-- Minimap -->
+        <div id="minimap-container">
+            <canvas id="minimap-canvas" width="200" height="150"></canvas>
+        </div>
+    </div>
+
+    <!-- GAME CANVAS -->
+    <canvas id="game-canvas"></canvas>
+
+    <!-- LOADING SCREEN -->
+    <div id="loading-screen">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <div class="loading-text">Loading Hallownest...</div>
+        </div>
+    </div>
+
+    <!-- HOW TO IMPORT SPRITES -->
+    <div id="sprite-guide" class="hidden">
+        <div class="guide-content">
+            <h2>HOW TO IMPORT HOLLOW KNIGHT SPRITES</h2>
+
+            <section>
+                <h3>1. Using Spritesheets</h3>
+                <p>Create a <code>sprites/</code> folder. Place spritesheet PNGs with evenly spaced frames.</p>
+                <pre>// In script.js, update SPRITE_CONFIG:
+SPRITE_CONFIG.player.idle = {
+    src: 'sprites/knight-idle.png',
+    frames: 11,
+    frameWidth: 120,
+    frameHeight: 120,
+    frameRate: 8
+};</pre>
+            </section>
+
+            <section>
+                <h3>2. Using Individual PNGs</h3>
+                <p>Place individual frames in folders:</p>
+                <pre>sprites/idle/frame0.png
+sprites/idle/frame1.png
+sprites/run/frame0.png
+sprites/run/frame1.png</pre>
+                <pre>// Use 'folder' mode:
+SPRITE_CONFIG.player.idle = {
+    mode: 'folder',
+    src: 'sprites/idle/',
+    files: ['frame0.png','frame1.png','frame2.png'],
+    frameWidth: 120,
+    frameHeight: 120,
+    frameRate: 8
+};</pre>
+            </section>
+
+            <section>
+                <h3>3. Loading Animations</h3>
+                <p>Animations are loaded at game start. Add new animation states:</p>
+                <pre>// Add to animationDefinitions:
+'wall_slide': { spriteKey: 'wall_slide', frames: 6, frameRate: 10 }
+'wall_jump': { spriteKey: 'wall_jump', frames: 4, frameRate: 12 }</pre>
+            </section>
+
+            <section>
+                <h3>4. Changing Skins</h3>
+                <pre>// Replace the entire spritesheet source:
+SPRITE_CONFIG.player.idle.src = 'sprites/great-nail-idle.png';
+// Then reload the game.</pre>
+            </section>
+
+            <section>
+                <h3>5. Sprite Sources</h3>
+                <ul>
+                    <li>Hollow Knight sprite rips from The Spriters Resource</li>
+                    <li>Custom art at 120x120px per frame</li>
+                    <li>Transparent PNG backgrounds</li>
+                    <li>Recommended: 24fps sprite sheets</li>
+                </ul>
+            </section>
+        </div>
+        <button id="guide-close">Close</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
